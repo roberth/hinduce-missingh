@@ -1,0 +1,15 @@
+Name:           hinduce-missingh
+Version:        0.0.0.0
+License:        BSD3
+Author:         Robert Hensing
+Synopsis:       Utility functions
+Description:    Extends base with all sorts of utility functions. Very easy, useful and portable
+Build-Type:     Simple
+Cabal-Version:  >= 1.2
+
+Library
+    Build-Depends:      base
+    Exposed-Modules:    Data.List.HIUtils
+                        , Data.String.HIUtils
+    Hs-Source-Dirs:     src
+--    Extensions:	        MultiParamTypeClasses, FlexibleContexts
