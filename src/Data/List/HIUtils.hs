@@ -1,9 +1,18 @@
 module Data.List.HIUtils (
   -- * Sorting-like
-  uniqSort, aggregate, aggregateBy, aggregateAL,
+  uniqSort
+  , aggregate, aggregateBy, aggregateAL
   
-  -- * Numeric lists operations
-  average , averageI, relFreq, relFreqAL
+  -- * Numeric lists
+  , nat0, nat1
+  , average , averageI
+  , relFreq, relFreqAL
+  
+  -- * Lists with Eq
+  , majority
+    
+  -- * Polymorphic list operations
+  , oddIx, evenIx
   ) where
 import Data.List
 import Data.Ord
@@ -54,3 +63,17 @@ aggregateAL = map (fst . head &&& map snd) . aggregateBy (comparing fst)
 -- | Find the most frequently occurring element. TODO: rewrite for Eq
 majority :: (Ord a) => [a] -> a
 majority = head . maximumBy (comparing length) . aggregate
+
+-- | Infinite integer sequence of the natural numbers, starting at 0
+nat0 :: (Num n) => [n]
+nat0 = iterate (+1) 0
+
+-- | Infinite integer sequence of the natural numbers, starting at 1
+nat1 :: (Num n) => [n]
+nat1 = iterate (+1) 1
+
+-- | Select odd-indexed list elements where index of head is 0
+oddIx = map snd . filter (odd . fst) . zip nat0
+
+-- | Select even-indexed list elements where index of head is 0
+evenIx = map snd . filter (even . fst) . zip nat0
